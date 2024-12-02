@@ -27,10 +27,12 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
+
           },
+
           "configurations": {
             "production": {
               "budgets": [
@@ -62,7 +64,8 @@
               "buildTarget": "message-router-client:build:production"
             },
             "development": {
-              "buildTarget": "message-router-client:build:development"
+              "buildTarget": "message-router-client:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
@@ -85,7 +88,7 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }

@@ -1,0 +1,15 @@
+.full-width {
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.mat-dialog-container {
+  max-width: 90vw; /* Limite la largeur à 90% de la fenêtre */
+  width: auto; /* Laisse Angular ajuster la largeur */
+  min-height: 300px; /* Définit une hauteur minimale */
+}

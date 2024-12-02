@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>{{ data ? 'Partner ID : '  + data.id : 'Create Partner' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Type</mat-label>
+      <input matInput formControlName="type" required [readonly]="isReadOnly"/>
+      <mat-error *ngIf="form.get('type')?.hasError('required')">Type is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Alias</mat-label>
+      <input matInput formControlName="alias" required [readonly]="isReadOnly"/>
+      <mat-error *ngIf="form.get('alias')?.hasError('required')">Alias is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill"  class="full-width readonly-wrapper">
+      <mat-label>Direction</mat-label>
+      <mat-select formControlName="direction">
+        <mat-option *ngFor="let direction of directions" [value]="direction">
+          {{ direction }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill"  class="full-width readonly-wrapper">
+      <mat-label>Flow</mat-label>
+      <mat-select formControlName="flow">
+        <mat-option *ngFor="let flow of flows" [value]="flow">
+          {{ flow }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Application</mat-label>
+      <textarea matInput formControlName="application" [readonly]="isReadOnly"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" [readonly]="isReadOnly"></textarea>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || isReadOnly">Save</button>
+      <button mat-button type="button" (click)="onCancel()">Cancel</button>
+    </div>
+
+  </form>
+</mat-dialog-content>
