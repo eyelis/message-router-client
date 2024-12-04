@@ -5,6 +5,7 @@ import {Message} from '../../shared/models/message.model';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-message-form',
@@ -22,7 +23,7 @@ export class MessageFormComponent {
     @Inject(MAT_DIALOG_DATA) public data: Message
   ) {
     this.form = this.fb.group({
-      timestamp: [data ? data.timestamp : '', [Validators.required, Validators.minLength(3)]],
+      timestamp: [data ? format(new Date(data.timestamp), 'yyyy-MM-dd HH:mm:ss.SSS') : '', [Validators.required, Validators.minLength(3)]],
       content: [data ? data.content : '', [Validators.required, Validators.minLength(10)]],
     });
   }
