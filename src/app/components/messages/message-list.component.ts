@@ -16,6 +16,7 @@ import {
 import {MatButton} from '@angular/material/button';
 import {MatSort, MatSortHeader} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-message-list',
@@ -36,7 +37,8 @@ import {MatPaginator} from '@angular/material/paginator';
     MatRowDef,
     MatSort,
     MatSortHeader,
-    MatPaginator
+    MatPaginator,
+    DatePipe
   ]
 })
 export class MessageListComponent implements OnInit {
