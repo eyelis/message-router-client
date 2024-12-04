@@ -5,7 +5,6 @@ import {Message} from '../../shared/models/message.model';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-message-form',
