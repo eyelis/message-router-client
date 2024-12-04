@@ -5,10 +5,15 @@ mat-table {
 
 mat-paginator {
   margin: 16px 0;
+  width: 100%;
 }
 
 .mat-column-content {
-  width: 50%;
+  width: 70%;
+}
+
+.mat-column-timestamp {
+  width: 20%;
 }
 
 .container{
