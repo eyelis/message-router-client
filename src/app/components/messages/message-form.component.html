@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>{{ data ? 'Edit Message ID : '  + data.id : 'Create Message' }}</h2>
+<h2 mat-dialog-title>{{ 'Message ID : '  + data.id }}</h2>
 
 <mat-dialog-content>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
