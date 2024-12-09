@@ -10,5 +10,4 @@ export default defineConfig({
   env: {
     homeUrl: 'http://localhost:4200/'
   },
-
 });
