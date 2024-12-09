@@ -21,6 +21,7 @@ import {MatButton} from '@angular/material/button';
 import {MatSort, MatSortHeader} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {PartnerService} from '../../shared/services/partners.service';
+import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-partner-list',
@@ -89,6 +90,31 @@ export class PartnerListComponent implements OnInit {
 
   addPartner(): void {
     this.openDetail();
+  }
+
+  deletePartner(id: number): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      data: {message: 'Are you sure you want to delete this partner?'},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.partnerService.deletePartner(id).subscribe({
+          next: () => {
+            const data = this.partners.data;
+            this.partners.data = data.filter((partner) => partner.id !== id);
+            console.log('Partner successfully deleted.');
+          },
+          error: (err) => {
+            console.error('Failed to delete partner:', err);
+          },
+          complete: () => {
+            console.log('Delete operation completed.');
+          },
+        });
+      }
+    });
   }
 
 }

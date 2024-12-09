@@ -42,6 +42,7 @@
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let partner">
         <button mat-button (click)="openDetail(partner)">Detail</button>
+        <button mat-button (click)="deletePartner(partner.id)">Delete</button>
       </td>
     </ng-container>
 
