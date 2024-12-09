@@ -4,12 +4,17 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Timestamp</mat-label>
-      <input matInput placeholder="yyyy-MM-dd HH:mm:ss.SSS" formControlName="timestamp" required  [readonly]="true"/>
+      <input matInput placeholder="yyyy-MM-dd HH:mm:ss.SSS" formControlName="timestamp" [readonly]="true"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Key</mat-label>
+      <input matInput formControlName="key" [readonly]="true"/>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Content</mat-label>
-      <textarea matInput formControlName="content" required  [readonly]="true"></textarea>
+      <textarea matInput formControlName="content" [readonly]="true"></textarea>
     </mat-form-field>
 
     <div class="button-container">

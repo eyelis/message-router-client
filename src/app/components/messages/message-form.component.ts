@@ -23,8 +23,9 @@ export class MessageFormComponent {
     @Inject(MAT_DIALOG_DATA) public data: Message
   ) {
     this.form = this.fb.group({
-      timestamp: [data ? format(new Date(data.timestamp), 'yyyy-MM-dd HH:mm:ss.SSS') : '', [Validators.required, Validators.minLength(3)]],
-      content: [data ? data.content : '', [Validators.required, Validators.minLength(10)]],
+      timestamp: [data ? format(new Date(data.timestamp), 'yyyy-MM-dd HH:mm:ss.SSS') : ''],
+      key: [data ? data.key : ''],
+      content: [data ? data.content : ''],
     });
   }
 

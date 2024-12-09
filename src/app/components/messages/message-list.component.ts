@@ -43,7 +43,7 @@ import {DatePipe} from '@angular/common';
 })
 export class MessageListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'timestamp', 'content', 'actions'];
+  displayedColumns: string[] = ['id', 'timestamp', 'key', 'content', 'actions'];
   messages: MatTableDataSource<Message>;
 
   @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator
