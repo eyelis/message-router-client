@@ -8,6 +8,7 @@ export default defineConfig({
     baseUrl: "http://localhost:8080/api/",
   },
   env: {
-    homeUrl: 'http://localhost:4200/'
+    homeUrl: 'http://localhost:4200/',
+    test_data_prefix: 'test_data_'
   },
 });

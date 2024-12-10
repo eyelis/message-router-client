@@ -1,6 +1,6 @@
 <div class="container">
 
-  <mat-table [dataSource]="messages" matSort class="mat-elevation-z8">>
+  <mat-table [data-testid]="'message-table'" [dataSource]="messages" matSort class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
       <td mat-cell *matCellDef="let message"> {{ message.id }} </td>

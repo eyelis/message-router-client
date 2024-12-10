@@ -6,7 +6,7 @@ Cypress.Commands.add('sendMessage', (key, message) => {
     url: '/messages/send',
     body: {
       key : key,
-      message: message
+      message: Cypress.env('test_data_prefix') + message
     },
     failOnStatusCode: false
   })
@@ -32,16 +32,19 @@ Cypress.Commands.add('clearMessages', () => {
     .then((response) => {
      // cy.log('GET Message Response : ' + JSON.stringify(response))
       response.body.map(message => {
-        cy.log("delete message line : " + message.id)
-        cy.request(
-          {
-            method: 'DELETE',
-            url : `/messages/${message.id}`,
-            failOnStatusCode: false
-          }
-        ) .then((response) => {
-          //cy.log('Message Deleted : ' +  JSON.stringify(response))
-        });
+        if(message.content.startsWith(Cypress.env('test_data_prefix'))) {
+
+          cy.log("delete message line : " + message.id)
+          cy.request(
+            {
+              method: 'DELETE',
+              url: `/messages/${message.id}`,
+              failOnStatusCode: false
+            }
+          ).then((response) => {
+            //cy.log('Message Deleted : ' +  JSON.stringify(response))
+          });
+        }
       })
 
     })

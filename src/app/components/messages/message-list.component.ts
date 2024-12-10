@@ -17,6 +17,7 @@ import {MatButton} from '@angular/material/button';
 import {MatSort, MatSortHeader} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {DatePipe} from '@angular/common';
+import {DataTestidDirective} from '../../data-testid.directive';
 
 @Component({
   selector: 'app-message-list',
@@ -38,7 +39,8 @@ import {DatePipe} from '@angular/common';
     MatSort,
     MatSortHeader,
     MatPaginator,
-    DatePipe
+    DatePipe,
+    DataTestidDirective
   ]
 })
 export class MessageListComponent implements OnInit {

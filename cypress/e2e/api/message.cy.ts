@@ -9,14 +9,10 @@ describe('Message', () => {
   })
 
   it("API List all messages", () => {
-   // cy.intercept('POST', 'http://localhost:8080/api/messages/send').as('send')
 
     let content = 'alerting_' + new Date().toISOString();
     let key = 'alerting';
     cy.sendMessage(key, content)
-   // cy.sendMessage('notification', 'notification_' + new Date().toISOString())
-
-    //cy.wait('@send')
 
     cy.request('GET', '/messages')
       .its('body')
