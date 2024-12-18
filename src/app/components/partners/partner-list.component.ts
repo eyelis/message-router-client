@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {Partner} from '../../shared/models/partner.model';
 import {PartnerFormComponent} from './partner-form.component';
@@ -22,6 +22,7 @@ import {MatSort, MatSortHeader} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {PartnerService} from '../../shared/services/partners.service';
 import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-partner-list',
@@ -45,10 +46,11 @@ import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component
     MatPaginator
   ]
 })
-export class PartnerListComponent implements OnInit {
+export class PartnerListComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['id', 'type', 'alias', 'direction', 'flow', 'application', 'description', 'actions'];
   partners: MatTableDataSource<Partner>;
+  private subscription: Subscription | null = null;
 
   @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator
   @ViewChild(MatSort, {static: false}) sort!: MatSort;
@@ -63,8 +65,14 @@ export class PartnerListComponent implements OnInit {
     this.loadPartners()
   }
 
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
   loadPartners(): void {
-    this.partnerService.getPartners().subscribe(data => {
+    this.subscription  = this.partnerService.getPartners().subscribe(data => {
       this.partners = new MatTableDataSource(data);
       this.partners.paginator = this.paginator;
       this.partners.sort = this.sort;

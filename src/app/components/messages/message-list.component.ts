@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Message } from '../../shared/models/message.model';
 import { MessageFormComponent } from './message-form.component';
@@ -18,6 +18,7 @@ import {MatSort, MatSortHeader} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {DatePipe} from '@angular/common';
 import {DataTestidDirective} from '../../data-testid.directive';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-message-list',
@@ -43,10 +44,11 @@ import {DataTestidDirective} from '../../data-testid.directive';
     DataTestidDirective
   ]
 })
-export class MessageListComponent implements OnInit {
+export class MessageListComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['id', 'timestamp', 'key', 'content', 'actions'];
   messages: MatTableDataSource<Message>;
+  private subscription: Subscription | null = null;
 
   @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator
   @ViewChild(MatSort, {static: false}) sort!: MatSort;
@@ -58,11 +60,17 @@ export class MessageListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.messageService.getMessages().subscribe(data => {
+    this.subscription = this.messageService.getMessages().subscribe(data => {
       this.messages = new MatTableDataSource(data);
       this.messages.paginator = this.paginator;
       this.messages.sort = this.sort;
     });
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   openDetail(message: Message): void {
